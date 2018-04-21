@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Users
+Route::get('/users', 'UserController@index');
+Route::post('/users', 'UserController@create');
+Route::get('/users/{userId}', 'UserController@get');
+Route::patch('/users/{userId}', 'UserController@update');
+Route::delete('/users/{userId}', 'UserController@delete');
