@@ -9,8 +9,8 @@ CREATE TABLE `users` (
     `middlename` varchar(50) default NULL,
     `lastname` varchar(50) NOT NULL,
     `country` varchar(3) default NULL,
-    `created` timestamp NOT NULL DEFAULT 0,
-    `modified` timestamp NOT NULL DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP,
+    `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -33,8 +33,8 @@ CREATE TABLE `restaurants` (
     `cuisine` varchar(50) default NULL,
 --     `reviews` int(10) unsigned,
 --     `rating` tinyint unsigned,
-    `created` timestamp NOT NULL DEFAULT 0,
-    `modified` timestamp NOT NULL DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP,
+    `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -50,11 +50,11 @@ CREATE TABLE `reviews` (
     `restaurant_id` int(10) unsigned NOT NULL,
     `comment` varchar(300) NOT NULL,
     `rating` tinyint unsigned NOT NULL,
-    `created` timestamp NOT NULL DEFAULT 0,
-    `modified` timestamp NOT NULL DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP,
+    `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
     CONSTRAINT `fk_reviews_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT `fk_reviews_restaurant_id` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `fk_reviews_restaurant_id` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- insert some default data
