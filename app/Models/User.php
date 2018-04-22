@@ -44,4 +44,43 @@ class User extends Model
 
         return $data;
     }
+
+    public static function updateUser(Request $request, $id) {
+        $builder = self::query();
+        $user = $builder->findOrFail($id);
+
+        $req = $request->all();
+
+        if ($request->has('email')) {
+            $user->email = $req['email'];
+        }
+
+        if ($request->has('firstname')) {
+            $user->firstname = $req['firstname'];
+        }
+
+        if ($request->has('middlename')) {
+            $user->middlename = $req['middlename'];
+        }
+
+        if ($request->has('lastname')) {
+            $user->lastname = $req['lastname'];
+        }
+
+        if ($request->has('country')) {
+            $user->country = $req['country'];
+        }
+
+        $user->save();
+
+        return $user;
+    }
+
+    public static function deleteUser($id) {
+        $builder = self::query();
+
+        $user = $builder->findOrFail($id);
+
+        $user->delete();
+    }
 }

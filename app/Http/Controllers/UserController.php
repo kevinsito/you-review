@@ -27,4 +27,14 @@ class UserController extends Controller
         $data = User::getUser($userId);
         return $data;
     }
+
+    public function update(Request $request, $userId) {
+        $data = User::updateUser($request, $userId);
+        return $data;
+    }
+
+    public function delete($userId) {
+        $data = User::deleteUser($userId);
+        return $data;
+    }
 }
