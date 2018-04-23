@@ -13,8 +13,9 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index() {
-        $data = User::getAllUsers();
+    public function index(Request $request) {
+        $params = $request->input();
+        $data = User::getAllUsers($params);
         return $data;
     }
 

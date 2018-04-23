@@ -18,8 +18,20 @@ class User extends Model
 
     protected $fillable = ['email', 'firstname', 'middlename', 'lastname', 'country'];
 
-    public static function getAllUsers() {
+    public static function getAllUsers($params) {
         $builder = self::query();
+
+        if(isset($params['sort'])) {
+            $builder->orderBy($params['sort']);
+        }
+
+        if(isset($params['search'])) {
+            $builder->where('email', 'LIKE', '%'.$params['search'].'%')
+                ->orWhere('firstname', 'LIKE', '%'.$params['search'].'%')
+                ->orWhere('middlename', 'LIKE', '%'.$params['search'].'%')
+                ->orWhere('lastname', 'LIKE', '%'.$params['search'].'%')
+                ->orWhere('country', 'LIKE', '%'.$params['search'].'%');;
+        }
 
         return $builder->get();
     }
