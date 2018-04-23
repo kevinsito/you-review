@@ -21,3 +21,7 @@ Route::post('/users', 'UserController@create');
 Route::get('/users/{userId}', 'UserController@get');
 Route::patch('/users/{userId}', 'UserController@update');
 Route::delete('/users/{userId}', 'UserController@delete');
+
+// Users
+Route::get('/restaurants', 'RestaurantController@index');
+Route::post('/restaurants', 'RestaurantController@create');
